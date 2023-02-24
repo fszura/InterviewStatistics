@@ -6,6 +6,7 @@ import com.szura.interview.service.calculations.PalindromeStatistics;
 import com.szura.interview.service.calculations.PhoneNumberStatistics;
 import com.szura.interview.service.calculations.SentenceStatistics;
 import com.szura.interview.service.calculations.Statistics;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,12 +19,17 @@ public class StatisticsServiceTest extends StatisticsServiceBaseTest{
 
     private StatisticsService statisticsService;
     @Before
-    public void init(){
+    public void init() {
         Map<StatisticsType, Statistics> availableStatistics = new HashMap<>();
         availableStatistics.put(StatisticsType.PALINDROME, new PalindromeStatistics());
         availableStatistics.put(StatisticsType.PHONE_NUMBER, new PhoneNumberStatistics());
         availableStatistics.put(StatisticsType.SENTENCE, new SentenceStatistics());
         statisticsService = new StatisticsService(availableStatistics);
+    }
+
+    @After
+    public void tearDown() {
+        statisticsService.shutDown();
     }
 
     @Test

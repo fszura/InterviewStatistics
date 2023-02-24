@@ -4,6 +4,7 @@ import com.mifmif.common.regex.Generex;
 import com.szura.interview.model.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
@@ -33,7 +34,7 @@ public class StatisticsServiceBaseTest {
     }
 
     private String getPalindrome(){
-        String[] palindromes = {"aba", "oppo", "teset", "adda"};
-        return palindromes[ThreadLocalRandom.current().nextInt(0, palindromes.length-1)];
+        List<String> palindromes = List.of("aba", "oppo", "teset", "adda");
+        return palindromes.get(ThreadLocalRandom.current().nextInt(0, palindromes.size()-1));
     }
 }

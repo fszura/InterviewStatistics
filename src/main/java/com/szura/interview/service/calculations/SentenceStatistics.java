@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class SentenceStatistics implements Statistics<SentenceCountResult> {
 
-    private Locale currentLocale;
+    private final Locale currentLocale;
 
     public SentenceStatistics() {
         currentLocale = new Locale("en", "US");
@@ -16,7 +16,7 @@ public class SentenceStatistics implements Statistics<SentenceCountResult> {
 
     @Override
     public SentenceCountResult calculateStatistics(String line) {
-        return Optional.ofNullable(line).map(l -> markBoundaries(l)).map(this::createResult).orElse(createResult(0));
+        return Optional.ofNullable(line).map(this::markBoundaries).map(this::createResult).orElse(createResult(0));
     }
 
     @Override

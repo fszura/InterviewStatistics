@@ -6,12 +6,11 @@ import com.szura.interview.service.calculations.PalindromeStatistics;
 import com.szura.interview.service.calculations.PhoneNumberStatistics;
 import com.szura.interview.service.calculations.SentenceStatistics;
 import com.szura.interview.service.calculations.Statistics;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class StatisticsServiceParametrizedTest extends StatisticsServiceBaseTest {
@@ -20,10 +19,10 @@ public class StatisticsServiceParametrizedTest extends StatisticsServiceBaseTest
     private StatisticsService statisticsService;
     @BeforeEach
     public void init(){
-        Map<StatisticsType, Statistics> availableStatistics = new HashMap<>();
-        availableStatistics.put(StatisticsType.PALINDROME, new PalindromeStatistics());
-        availableStatistics.put(StatisticsType.PHONE_NUMBER, new PhoneNumberStatistics());
-        availableStatistics.put(StatisticsType.SENTENCE, new SentenceStatistics());
+        Map<StatisticsType, Statistics> availableStatistics = Map.of(
+        StatisticsType.PALINDROME, new PalindromeStatistics(),
+        StatisticsType.PHONE_NUMBER, new PhoneNumberStatistics(),
+        StatisticsType.SENTENCE, new SentenceStatistics());
         statisticsService = new StatisticsService(availableStatistics);
     }
 
@@ -44,6 +43,6 @@ public class StatisticsServiceParametrizedTest extends StatisticsServiceBaseTest
 
         Map<StatisticsType, StatisticResult> result = statisticsService.calculateStatisticsForLine(line);
 
-        Assert.assertEquals(expected, result);
+        Assertions.assertEquals(expected, result);
     }
 }
