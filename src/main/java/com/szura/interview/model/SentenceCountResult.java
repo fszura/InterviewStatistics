@@ -5,12 +5,12 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class SentenceCountResult implements StatisticResult{
+public class SentenceCountResult implements StatisticResult<Long>{
 
-    private long count;
+    private Long count;
 
     @Override
-    public StatisticResult sum(StatisticResult statisticResult) {
+    public StatisticResult<Long> sum(StatisticResult<Long> statisticResult) {
         return new SentenceCountResult(count + statisticResult.getCount());
     }
 }

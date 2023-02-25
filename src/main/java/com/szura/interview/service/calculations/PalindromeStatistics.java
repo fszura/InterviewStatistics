@@ -5,12 +5,22 @@ import com.szura.interview.model.PalindromeCountResult;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
-public class PalindromeStatistics implements Statistics<PalindromeCountResult> {
+public class PalindromeStatistics implements Statistics<PalindromeCountResult, Long> {
 
     @Override
-    public boolean matchRequirements(String word) {
+    public Long sumStatistics(Long s, Long s1) {
+        return s + s1;
+    }
+
+    @Override
+    public Long emptyStatistics() {
+        return 0L;
+    }
+
+    @Override
+    public Long matchRequirements(String word) {
         return Optional.ofNullable(word).map(s->s.replaceAll("\\s+",""))
-                .filter(s->!s.isEmpty()).map(String::toLowerCase).map(this::checkPalindrome).orElse(false);
+                .filter(s->!s.isEmpty()).map(String::toLowerCase).map(this::checkPalindrome).map(b->b?1L:0L).orElse(0L);
     }
 
     private boolean checkPalindrome(String wordToCheck){
@@ -19,7 +29,7 @@ public class PalindromeStatistics implements Statistics<PalindromeCountResult> {
     }
 
     @Override
-    public PalindromeCountResult createResult(long count) {
+    public PalindromeCountResult createResult(Long count) {
         return new PalindromeCountResult(count);
     }
 }

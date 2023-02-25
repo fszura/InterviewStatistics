@@ -3,15 +3,15 @@ package com.szura.interview.model;
 import lombok.Data;
 
 @Data
-public class PalindromeCountResult implements StatisticResult {
+public class PalindromeCountResult implements StatisticResult<Long> {
 
-    private long count;
+    private Long count;
     public PalindromeCountResult(long count){
         this.count = count;
     }
 
     @Override
-    public StatisticResult sum(StatisticResult statisticResult) {
+    public StatisticResult<Long> sum(StatisticResult<Long> statisticResult) {
         return new PalindromeCountResult(count+ statisticResult.getCount());
     }
 }

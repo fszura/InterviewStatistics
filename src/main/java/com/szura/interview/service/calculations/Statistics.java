@@ -3,16 +3,21 @@ package com.szura.interview.service.calculations;
 import com.szura.interview.model.StatisticResult;
 
 import java.util.Arrays;
+import java.util.stream.Stream;
 
-public interface Statistics <S extends StatisticResult> {
+public interface Statistics <S extends StatisticResult, R> {
 
     default S calculateStatistics(String line){
-        if (line == null) return createResult(0);
-        long palindromesCount = Arrays.stream(line.split("\\W+")).filter(this::matchRequirements).count();
-        return createResult(palindromesCount);
+        if (line == null) return createResult(emptyStatistics());
+        return createResult(Arrays.stream(line.split("\\W+"))
+                .map(this::matchRequirements).reduce(emptyStatistics(), this::sumStatistics));
     }
 
-    boolean matchRequirements(String word);
+    R sumStatistics(R s, R s1);
 
-    S createResult(long count);
+    R emptyStatistics();
+
+    R matchRequirements(String word);
+
+    S createResult(R count);
 }
