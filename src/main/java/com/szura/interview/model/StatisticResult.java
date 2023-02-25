@@ -1,8 +1,8 @@
 package com.szura.interview.model;
 
-public interface StatisticResult {
+public interface StatisticResult<T> {
 
-    long getCount();
+    T getCount();
 
-    StatisticResult sum(StatisticResult statisticResult);
+    StatisticResult<T> sum(StatisticResult<T> statisticResult);
 }

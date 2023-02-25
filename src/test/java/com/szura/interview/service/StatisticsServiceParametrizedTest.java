@@ -3,7 +3,7 @@ package com.szura.interview.service;
 import com.szura.interview.model.StatisticResult;
 import com.szura.interview.model.StatisticsType;
 import com.szura.interview.service.calculations.PalindromeStatistics;
-import com.szura.interview.service.calculations.PhoneNumberStatistics;
+import com.szura.interview.service.calculations.NumberStatistics;
 import com.szura.interview.service.calculations.SentenceStatistics;
 import com.szura.interview.service.calculations.Statistics;
 import org.junit.jupiter.api.Assertions;
@@ -21,7 +21,7 @@ public class StatisticsServiceParametrizedTest extends StatisticsServiceBaseTest
     public void init(){
         Map<StatisticsType, Statistics> availableStatistics = Map.of(
         StatisticsType.PALINDROME, new PalindromeStatistics(),
-        StatisticsType.PHONE_NUMBER, new PhoneNumberStatistics(),
+        StatisticsType.PHONE_NUMBER, new NumberStatistics(),
         StatisticsType.SENTENCE, new SentenceStatistics());
         statisticsService = new StatisticsService(availableStatistics);
     }

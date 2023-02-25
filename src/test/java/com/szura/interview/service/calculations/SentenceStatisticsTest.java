@@ -63,7 +63,7 @@ public class SentenceStatisticsTest {
     @Test
     public void calculateSentenceStatistics_emptyLine_expectZero() {
         String line = "";
-        SentenceCountResult expected = new SentenceCountResult(0);
+        SentenceCountResult expected = new SentenceCountResult(0L);
 
         StatisticResult result = sentenceStatistics.calculateStatistics(line);
 
@@ -73,7 +73,7 @@ public class SentenceStatisticsTest {
     @Test
     public void calculateSentenceStatistics_LineWithNull_expectZero() {
         String line = null;
-        SentenceCountResult expected = new SentenceCountResult(0);
+        SentenceCountResult expected = new SentenceCountResult(0L);
 
         StatisticResult result = sentenceStatistics.calculateStatistics(line);
 
@@ -83,7 +83,7 @@ public class SentenceStatisticsTest {
     @Test
     public void calculateSentenceStatistics_lineWithOneSentence_expectOne() {
         String line = "A little test.";
-        SentenceCountResult expected = new SentenceCountResult(1);
+        SentenceCountResult expected = new SentenceCountResult(1L);
 
         StatisticResult result = sentenceStatistics.calculateStatistics(line);
 
@@ -93,7 +93,7 @@ public class SentenceStatisticsTest {
     @Test
     public void calculateSentenceStatistics_lineWithFewSentences_expectThree() {
         String line = "A little test. Small test. Another case?";
-        SentenceCountResult expected = new SentenceCountResult(3);
+        SentenceCountResult expected = new SentenceCountResult(3L);
 
         StatisticResult result = sentenceStatistics.calculateStatistics(line);
 
@@ -104,7 +104,7 @@ public class SentenceStatisticsTest {
     @Test
     public void calculateSentenceStatistics_lineWithOneQuestion_expectOne() {
         String line = "A little test?";
-        SentenceCountResult expected = new SentenceCountResult(1);
+        SentenceCountResult expected = new SentenceCountResult(1L);
 
         StatisticResult result = sentenceStatistics.calculateStatistics(line);
 

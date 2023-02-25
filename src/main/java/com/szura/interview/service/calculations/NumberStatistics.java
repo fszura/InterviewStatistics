@@ -1,11 +1,11 @@
 package com.szura.interview.service.calculations;
 
-import com.szura.interview.model.PhoneNumberStatisticsResult;
+import com.szura.interview.model.NumberStatisticsResult;
 
 import java.util.Optional;
 import java.util.regex.Pattern;
 
-public class PhoneNumberStatistics implements Statistics<PhoneNumberStatisticsResult> {
+public class NumberStatistics implements Statistics<NumberStatisticsResult> {
 
     private static final String REGEX = "^\\d{9}$";
     private final Pattern pattern = Pattern.compile(REGEX);
@@ -16,7 +16,7 @@ public class PhoneNumberStatistics implements Statistics<PhoneNumberStatisticsRe
     }
 
     @Override
-    public PhoneNumberStatisticsResult createResult(long count) {
-        return new PhoneNumberStatisticsResult(count);
+    public NumberStatisticsResult createResult(long count) {
+        return new NumberStatisticsResult(count);
     }
 }

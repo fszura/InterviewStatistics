@@ -16,7 +16,7 @@ public class StatisticsServiceBaseTest {
     protected Map<StatisticsType, StatisticResult> generateExpectedStatistics(Long palindromeCount, Long phoneNumberCount, Long sentenceCount){
         Map<StatisticsType, StatisticResult> expectedMap = new HashMap<>();
         Optional.ofNullable(palindromeCount).ifPresent(c-> expectedMap.put(StatisticsType.PALINDROME, new PalindromeCountResult(c)));
-        Optional.ofNullable(phoneNumberCount).ifPresent(c-> expectedMap.put(StatisticsType.PHONE_NUMBER, new PhoneNumberStatisticsResult(c)));
+        Optional.ofNullable(phoneNumberCount).ifPresent(c-> expectedMap.put(StatisticsType.PHONE_NUMBER, new NumberStatisticsResult(c)));
         Optional.ofNullable(sentenceCount).ifPresent(c-> expectedMap.put(StatisticsType.SENTENCE, new SentenceCountResult(c)));
         return expectedMap;
     }
