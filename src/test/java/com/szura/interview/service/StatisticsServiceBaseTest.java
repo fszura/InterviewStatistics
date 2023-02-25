@@ -6,19 +6,25 @@ import com.szura.interview.model.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.LongStream;
 
 public class StatisticsServiceBaseTest {
 
 
-    protected Map<StatisticsType, StatisticResult> generateExpectedStatistics(Long palindromeCount, Long phoneNumberCount, Long sentenceCount){
+    protected Map<StatisticsType, StatisticResult> generateExpectedStatistics(Long palindromeCount, Long phoneNumberCount, Long idCount, Long sentenceCount){
         Map<StatisticsType, StatisticResult> expectedMap = new HashMap<>();
-        Optional.ofNullable(palindromeCount).ifPresent(c-> expectedMap.put(StatisticsType.PALINDROME, new PalindromeCountResult(c)));
-        Optional.ofNullable(phoneNumberCount).ifPresent(c-> expectedMap.put(StatisticsType.PHONE_NUMBER, new NumberStatisticsResult(c)));
-        Optional.ofNullable(sentenceCount).ifPresent(c-> expectedMap.put(StatisticsType.SENTENCE, new SentenceCountResult(c)));
+        expectedMap.put(StatisticsType.PALINDROME, new PalindromeCountResult(palindromeCount));
+        expectedMap.put(StatisticsType.PHONE_NUMBER, new NumberStatisticsResult(generateMap(phoneNumberCount, idCount)));
+        expectedMap.put(StatisticsType.SENTENCE, new SentenceCountResult(sentenceCount));
         return expectedMap;
+    }
+
+    private Map<NumberResultType, Long> generateMap(Long phoneNumbers, Long ids) {
+        return Map.of(
+                NumberResultType.PHONE_NUMBER, phoneNumbers,
+                NumberResultType.ID, ids
+                );
     }
 
     protected String generateSentence(long noPalindromes, long noPhoneNumbers){

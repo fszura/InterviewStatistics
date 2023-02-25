@@ -16,48 +16,53 @@ public class SentenceStatisticsTest {
     }
 
     @Test
-    public void matchRequirements_emptyPhrase_expectFalse(){
+    public void matchRequirements_emptyPhrase_expectZero(){
         String phase = "";
 
-        boolean result = sentenceStatistics.matchRequirements(phase);
+        Long expected = 0L;
+        Long result = sentenceStatistics.matchRequirements(phase);
 
-        Assert.assertFalse(result);
+        Assert.assertEquals(expected, result);
     }
 
     @Test
-    public void matchRequirements_phraseWithNull_expectFalse(){
+    public void matchRequirements_phraseWithNull_expectZero(){
         String phase = null;
 
-        boolean result = sentenceStatistics.matchRequirements(phase);
+        Long expected = 0L;
+        Long result = sentenceStatistics.matchRequirements(phase);
 
-        Assert.assertFalse(result);
+        Assert.assertEquals(expected, result);
     }
 
     @Test
     public void matchRequirements_phraseWhichIsASentence_expectTrue(){
         String phase = "This is a sentence.";
 
-        boolean result = sentenceStatistics.matchRequirements(phase);
+        Long expected = 1L;
+        Long result = sentenceStatistics.matchRequirements(phase);
 
-        Assert.assertTrue(result);
+        Assert.assertEquals(expected, result);
     }
 
     @Test
     public void matchRequirements_phraseWhichIsAQuestion_expectTrue(){
         String phase = "Is it a sentence?";
 
-        boolean result = sentenceStatistics.matchRequirements(phase);
+        Long expected = 1L;
+        Long result = sentenceStatistics.matchRequirements(phase);
 
-        Assert.assertTrue(result);
+        Assert.assertEquals(expected, result);
     }
 
     @Test
     public void matchRequirements_phraseWhichIsSentence_expectTrue(){
         String phase = "Is it a sentence!";
 
-        boolean result = sentenceStatistics.matchRequirements(phase);
+        Long expected = 1L;
+        Long result = sentenceStatistics.matchRequirements(phase);
 
-        Assert.assertTrue(result);
+        Assert.assertEquals(expected, result);
     }
 
     @Test
