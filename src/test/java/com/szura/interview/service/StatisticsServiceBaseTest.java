@@ -12,18 +12,22 @@ import java.util.stream.LongStream;
 public class StatisticsServiceBaseTest {
 
 
-    protected Map<StatisticsType, StatisticResult> generateExpectedStatistics(Long palindromeCount, Long phoneNumberCount, Long idCount, Long sentenceCount){
+    protected Map<StatisticsType, StatisticResult> generateExpectedStatistics(Long palindromeCount, Long phoneNumberCount, Long idCount,  Long sentenceCount){
+        return generateExpectedStatistics(palindromeCount, phoneNumberCount, idCount, 0L, sentenceCount);
+    }
+    protected Map<StatisticsType, StatisticResult> generateExpectedStatistics(Long palindromeCount, Long phoneNumberCount, Long idCount, Long passportCount,  Long sentenceCount){
         Map<StatisticsType, StatisticResult> expectedMap = new HashMap<>();
         expectedMap.put(StatisticsType.PALINDROME, new PalindromeCountResult(palindromeCount));
-        expectedMap.put(StatisticsType.PHONE_NUMBER, new NumberStatisticsResult(generateMap(phoneNumberCount, idCount)));
+        expectedMap.put(StatisticsType.PHONE_NUMBER, new NumberStatisticsResult(generateMap(phoneNumberCount, idCount, passportCount)));
         expectedMap.put(StatisticsType.SENTENCE, new SentenceCountResult(sentenceCount));
         return expectedMap;
     }
 
-    private Map<NumberResultType, Long> generateMap(Long phoneNumbers, Long ids) {
+    private Map<NumberResultType, Long> generateMap(Long phoneNumbers, Long ids, Long passports) {
         return Map.of(
                 NumberResultType.PHONE_NUMBER, phoneNumbers,
-                NumberResultType.ID, ids
+                NumberResultType.ID, ids,
+                NumberResultType.PASSPORT, passports
                 );
     }
 

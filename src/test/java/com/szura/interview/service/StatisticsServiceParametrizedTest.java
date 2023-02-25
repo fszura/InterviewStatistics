@@ -28,18 +28,18 @@ public class StatisticsServiceParametrizedTest extends StatisticsServiceBaseTest
 
     @CsvSource(
             value =  {
-                    "1, 1, 0, 1",
-                    "2, 5, 0, 1",
-                    "50, 70, 0, 1",
-                    "0, 1, 0, 1",
-                    "0, 0, 0, 0",
-                    "1, 0, 0, 1"
+                    "1, 1, 0, 0, 1",
+                    "2, 5, 0, 0, 1",
+                    "50, 70, 0, 0, 1",
+                    "0, 1, 0, 0, 1",
+                    "0, 0, 0, 0, 0",
+                    "1, 0, 0, 0, 1"
             }, nullValues = {"null"}
     )
     @ParameterizedTest
-    public void shouldCountStatisticsForNotEmptySentence(long palindromes, long phoneNumbers, long idDocuments, long sentences){
+    public void shouldCountStatisticsForNotEmptySentence(long palindromes, long phoneNumbers, long idDocuments, long passports, long sentences){
         String line = generateSentence(palindromes, phoneNumbers);
-        Map<StatisticsType, StatisticResult> expected = generateExpectedStatistics(palindromes, phoneNumbers, idDocuments, sentences);
+        Map<StatisticsType, StatisticResult> expected = generateExpectedStatistics(palindromes, phoneNumbers, idDocuments, passports, sentences);
 
         Map<StatisticsType, StatisticResult> result = statisticsService.calculateStatisticsForLine(line);
 
