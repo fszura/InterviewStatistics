@@ -2,13 +2,10 @@ package com.szura.interview.model;
 
 import lombok.Data;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-
-import static com.szura.interview.model.NumberResultType.PHONE_NUMBER;
 @Data
 public class NumberStatisticsResult implements StatisticResult<Map<NumberResultType, Long>> {
 
@@ -16,8 +13,6 @@ public class NumberStatisticsResult implements StatisticResult<Map<NumberResultT
 
     public NumberStatisticsResult(Map<NumberResultType, Long> count) {
         this.count = count;
-//        this.count = new HashMap<>();
-//        this.count.put(PHONE_NUMBER, count);
     }
 
     @Override
